@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirLinesManager", "AirLinesManager\AirLinesManager.csproj", "{413BFAF3-EE2F-4A32-AA69-B317376558AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlinesManagerTest", "AirlinesManagerTest\AirlinesManagerTest.csproj", "{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{413BFAF3-EE2F-4A32-AA69-B317376558AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413BFAF3-EE2F-4A32-AA69-B317376558AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413BFAF3-EE2F-4A32-AA69-B317376558AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413BFAF3-EE2F-4A32-AA69-B317376558AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02F633E0-D713-47C6-B600-1D2DA7A36CDD}
+	EndGlobalSection
+EndGlobal
