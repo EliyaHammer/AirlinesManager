@@ -54,7 +54,7 @@ namespace AirLinesManager
         public override bool Equals(object obj)
         {
             if (obj is null)
-                return false;
+                return false; 
             if (obj as Customer is null)
                 return false;
             if (this.ID == (obj as Customer).ID)
