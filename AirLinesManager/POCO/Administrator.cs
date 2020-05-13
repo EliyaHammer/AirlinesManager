@@ -61,7 +61,7 @@ namespace AirLinesManager.POCO
 
         public override string ToString()
         {
-            return $"ID: {ID}, Username: {Username}, Password: {Password}";
+            return $"ID: {ID}, Username: {Username}";
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager
 {
-    public interface ICustomerDAO : IBasicDAO<Customer>
+    public interface ICustomerDAO : IBasicDAO<Customer>, IDAOTest
     {
         Customer GetCustomerByUsername(string username);
         List<Customer> GetCustomerByFullName(string firstName, string lastName);

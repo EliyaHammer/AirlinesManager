@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager.Facades
 {
-    interface ILoggedInAdministratorFacade
+    public interface ILoggedInAdministratorFacade
     {
         AirlineCompany CreateNewAirline(AirlineCompany toAdd);
         Customer CreateNewCustomer(Customer toAdd);

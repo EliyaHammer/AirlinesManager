@@ -60,7 +60,7 @@ namespace AirLinesManager
 
         public override string ToString()
         {
-            return $"ID: {ID}, Airline Name: {AirLineName}, Username: {UserName}, Password: {Password}, Country Code: {CountryCode}";
+            return $"ID: {ID}, Airline Name: {AirLineName}, Username: {UserName}, Country Code: {CountryCode}";
         }
     }
 }

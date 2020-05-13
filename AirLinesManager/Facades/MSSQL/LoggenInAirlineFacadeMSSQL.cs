@@ -102,11 +102,11 @@ namespace AirLinesManager
             if (airline.ID <= 0)
                 throw new IllegalValueException($"Airline's ID: '{airline.ID}' is not valid.");
             if (airline.ID != token.user.ID || airline.Password != token.user.Password)
-                throw new UserAccessabillityException("This user cannot access the provided airline. ID or Password don't match.");
+                throw new UserAccessabillityException($"This user: '{token.user.UserName}' cannot access the provided airline. ID or Password don't match.");
             if (_airlineDAO.Get(token.user.ID) == null)
                 throw new AirlineNotFoundException($"Airline '{token.user.AirLineName}' could not be found, therefor cannot be updated.");
             if (airline.AirLineName is null || airline.Password is null || airline.UserName is null)
-                throw new NullReferenceException($"One or more of the fields are not filled: '{airline.AirLineName}' '{airline.Password}' '{airline.UserName}'.");
+                throw new NullReferenceException($"One or more of the fields are not filled: 'Airline Name' 'Password' 'Username'.");
             if (airline.CountryCode <= 0)
                 throw new IllegalValueException($"Country code provided: '{airline.CountryCode}' is not valid.");
             if (_countryDAO.Get(airline.CountryCode) is null)

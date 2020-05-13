@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager
 {
-    public interface ICountryDAO : IBasicDAO<Country>
+    public interface ICountryDAO : IBasicDAO<Country>, IDAOTest 
     {
         Country GetCountryByName(string name);
         bool CheckNameExistance(string name, long id);

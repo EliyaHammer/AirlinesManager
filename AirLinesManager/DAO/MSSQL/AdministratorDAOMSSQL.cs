@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager.DAO.MSSQL
 {
-    public class AdministratorDAOMSSQL : BasicDAO<Administrator>, IAdministratorDAO, IDAOTest
+    public class AdministratorDAOMSSQL : BasicDAO<Administrator>, IAdministratorDAO
     {
         private SqlConnection Connection;
         public Administrator Add(Administrator toAdd)

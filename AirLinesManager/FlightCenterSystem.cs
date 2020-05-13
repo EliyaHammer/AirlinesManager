@@ -3,6 +3,7 @@ using AirLinesManager.LoginService;
 using AirLinesManager.POCO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,7 +18,7 @@ namespace AirLinesManager
         FlightCenterSystemFanctionallityFacadeMSSQL _functionallityFacade;
         private LoginServiceBase _loginService;
         private TimeSpan _dailyWakeUpTime = MyConfig._dailyWakeUpTime;
-
+        private int _counter;
         private FlightCenterSystem()
         {
             _loginService = new LoginServiceMSSQL();
@@ -25,12 +26,25 @@ namespace AirLinesManager
 
             Task.Run(() =>
             {
+                System.Timers.Timer timer = new System.Timers.Timer();
+                timer.Interval = 1;
+                timer.Elapsed += new System.Timers.ElapsedEventHandler((o, e) => { _counter++; });
+
                 while (true)
                 {
-                    //
-                    _functionallityFacade.MoveFlightAndTicketsToHistory();
-                    //
-                    Thread.Sleep(MyConfig.CLEANING_TIME_GAP);
+                    if (DateTime.Now.TimeOfDay == _dailyWakeUpTime)
+                    {
+                        timer.Start();
+                        _functionallityFacade.MoveFlightAndTicketsToHistory();
+                        timer.Stop();
+                        Thread.Sleep(MyConfig.CLEANING_TIME_GAP - _counter);
+                        _counter = 0;
+                    }
+
+                    else
+                    {
+                        Thread.Sleep(1000);
+                    }
                 }
             });
         }//SINGELTON

@@ -15,7 +15,7 @@ namespace AirLinesManager
         public void CancelTicket(LoginToken<Customer> token, Ticket ticket)
         {
             if (token is null || token.user is null)
-                throw new NullReferenceException($"User: '{token.user.UserName}' is empty.");
+                throw new NullReferenceException($"User is empty.");
             if (ticket is null)
                 throw new NullReferenceException($"The given ticket is empty.");
             if (ticket.ID <= 0)
@@ -33,7 +33,7 @@ namespace AirLinesManager
             if (token is null || token.user is null)
                 throw new NullReferenceException("User given is empty.");
             if (oldPassword is null || newPassword is null)
-                throw new NullReferenceException($"Fields: '{oldPassword}' , '{newPassword}' must be filled");
+                throw new NullReferenceException($"Fields: 'OldPassword' , 'New Password' must be filled");
             if (token.user.Password != oldPassword)
                 throw new WrongPasswordException("Password is wrong.");
             if (_customerDAO.Get(token.user.ID) == null)

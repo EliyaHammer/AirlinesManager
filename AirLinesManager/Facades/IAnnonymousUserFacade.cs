@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager
 {
-    interface IAnnonymousUserFacade
+   public interface IAnnonymousUserFacade
     {
         IList<AirlineCompany> GetAllAirlineCompanies();
         IList<Flight> GetAllFlights();

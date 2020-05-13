@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager
 {
-    public interface IFlightDAO : IBasicDAO<Flight>
+    public interface IFlightDAO : IBasicDAO<Flight>, IDAOTest
     {
         Dictionary<Flight, int> GetAllFlightsVacancy();
         IList<Flight> GetFlightsByOriginCountry(long countryID);

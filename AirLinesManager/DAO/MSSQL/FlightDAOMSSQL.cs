@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager
 {
-   public class FlightDAOMSSQL : BasicDAO<Flight>, IFlightDAO, IDAOTest
+   public class FlightDAOMSSQL : BasicDAO<Flight>, IFlightDAO
     {
         private SqlConnection Connection;
         private AirlineDAOMSSQL airlineDAO = new AirlineDAOMSSQL();

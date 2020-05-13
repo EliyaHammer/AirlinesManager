@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager
 {
-    public class TicketDAOMSSQL : BasicDAO<Ticket>, ITicketDAO, IDAOTest
+    public class TicketDAOMSSQL : BasicDAO<Ticket>, ITicketDAO
     {
         private SqlConnection Connection;
         

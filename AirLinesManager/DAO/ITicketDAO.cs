@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirLinesManager
 {
-    public interface ITicketDAO : IBasicDAO<Ticket>
+    public interface ITicketDAO : IBasicDAO<Ticket>, IDAOTest
     {
         List<Ticket> GetTicketsByCustomer(Customer customer);
         List<Ticket> GetTicketsByFlight(Flight flight);

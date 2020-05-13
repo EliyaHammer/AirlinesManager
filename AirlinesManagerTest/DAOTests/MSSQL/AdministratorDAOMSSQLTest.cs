@@ -9,29 +9,27 @@ namespace AirlinesManagerTest.DAOTests.MSSQL
     [TestClass]
     public class AdministratorDAOMSSQLTest
     {
-        // TODO:
-        // use interface instead of concrete class 
         IAirlineDAO airlineDAO = new AirlineDAOMSSQL();
-        TicketDAOMSSQL ticketDAO = new TicketDAOMSSQL();
-        FlightDAOMSSQL flightDAO = new FlightDAOMSSQL();
-        AdministratorDAOMSSQL administratorDAO = new AdministratorDAOMSSQL();
-        CustomerDAOMSSQL customerDAO = new CustomerDAOMSSQL();
-        CountryDAOMSSQL countryDAO = new CountryDAOMSSQL();
-
-        [AssemblyInitialize]
-        public void AssemblyInitialize ()
-        {
-            BasicDAO<IPoco>._connectionString = MyConfig._replicaConnectionString;
-        }
+        ITicketDAO ticketDAO = new TicketDAOMSSQL();
+        IFlightDAO flightDAO = new FlightDAOMSSQL();
+        IAdministratorDAO administratorDAO = new AdministratorDAOMSSQL();
+        ICustomerDAO customerDAO = new CustomerDAOMSSQL();
+        ICountryDAO countryDAO = new CountryDAOMSSQL();
 
         [TestInitialize]
-        public void TestInitialize()
+        public void TestInitialize() //static did not changed for everyone. //assembly initialize didn't work -> signature wrong.
         {
-            airlineDAO.RemoveAllReplica();
+            TicketDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             ticketDAO.RemoveAllReplica();
-            countryDAO.RemoveAllReplica();
-            flightDAO.RemoveAllReplica();
+            CustomerDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             customerDAO.RemoveAllReplica();
+            FlightDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
+            flightDAO.RemoveAllReplica();
+            AirlineDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
+            airlineDAO.RemoveAllReplica();
+            CountryDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
+            countryDAO.RemoveAllReplica();
+            AdministratorDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             administratorDAO.RemoveAllReplica();
         }
 

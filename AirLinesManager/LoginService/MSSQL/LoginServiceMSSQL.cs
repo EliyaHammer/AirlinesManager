@@ -94,7 +94,7 @@ namespace AirLinesManager
             return false;
 
             if (customerResult.Password != password)
-                throw new WrongPasswordException("Wrong password.");
+                throw new WrongPasswordException($"Wrong password for user {userName}.");
             else
             {
                 token = new LoginToken<Customer>();
@@ -116,7 +116,7 @@ namespace AirLinesManager
                 return false;
 
             if (administratorResult.Password != password)
-                throw new WrongPasswordException("Wrong password.");
+                throw new WrongPasswordException($"Wrong password for user {userName}.");
             else
             {
                 token = new LoginToken<Administrator>();

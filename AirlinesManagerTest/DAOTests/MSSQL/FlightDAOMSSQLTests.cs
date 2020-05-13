@@ -9,35 +9,27 @@ namespace AirlinesManagerTest.DAOTests
     [TestClass]
     public class FlightDAOMSSQLTests
     {
-        AirlineDAOMSSQL airlineDAO;
-        TicketDAOMSSQL ticketDAO;
-        FlightDAOMSSQL flightDAO;
-        AdministratorDAOMSSQL administratorDAO;
-        CustomerDAOMSSQL customerDAO;
-        CountryDAOMSSQL countryDAO;
+        IAirlineDAO airlineDAO = new AirlineDAOMSSQL();
+        ITicketDAO ticketDAO = new TicketDAOMSSQL();
+        IFlightDAO flightDAO = new FlightDAOMSSQL();
+        IAdministratorDAO administratorDAO = new AdministratorDAOMSSQL();
+        ICustomerDAO customerDAO = new CustomerDAOMSSQL();
+        ICountryDAO countryDAO = new CountryDAOMSSQL();
 
-        //before every test: initialize the conn string and remove all replica.
         [TestInitialize]
         public void TestInitialize()
         {
-            airlineDAO = new AirlineDAOMSSQL();
-            AirlineDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
-            ticketDAO = new TicketDAOMSSQL();
             TicketDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
-            flightDAO = new FlightDAOMSSQL();
-            FlightDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
-            administratorDAO = new AdministratorDAOMSSQL();
-            AdministratorDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
-            customerDAO = new CustomerDAOMSSQL();
-            CustomerDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
-            countryDAO = new CountryDAOMSSQL();
-            CountryDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
-
             ticketDAO.RemoveAllReplica();
+            CustomerDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             customerDAO.RemoveAllReplica();
+            FlightDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             flightDAO.RemoveAllReplica();
+            AirlineDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             airlineDAO.RemoveAllReplica();
+            CountryDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             countryDAO.RemoveAllReplica();
+            AdministratorDAOMSSQL._connectionString = MyConfig._replicaConnectionString;
             administratorDAO.RemoveAllReplica();
         }
 
@@ -100,8 +92,9 @@ namespace AirlinesManagerTest.DAOTests
 
 
 
-            flightDAO.Add(new Flight(elal.ID, israel.ID, israel.ID, new DateTime((DateTime.Now.Year + 2), 12, 5, 14, 00, 00), new DateTime((DateTime.Now.Year + 2), 12, 7, 14, 00, 00), 50, FlightStatus.NotDeparted));
+            Flight theFlight = flightDAO.Add(new Flight(elal.ID, israel.ID, israel.ID, new DateTime((DateTime.Now.Year + 2), 12, 5, 14, 00, 00), new DateTime((DateTime.Now.Year + 2), 12, 7, 14, 00, 00), 50, FlightStatus.NotDeparted));
             Assert.AreEqual(1, flightDAO.GetAll().Count);
+            Assert.AreEqual(theFlight, flightDAO.GetAll()[0]);
         }
 
         [TestMethod]
