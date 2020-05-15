@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirLinesManager
 {
     [Serializable]
-    public class WrongUsernameException : ApplicationException
+    public class WrongUsernameException : AirlinesManagerException
     {
         public WrongUsernameException()
         {

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirLinesManager
 {
     [Serializable]
-    public class IllegalValueException : ApplicationException
+    public class IllegalValueException : AirlinesManagerException
     {
         public IllegalValueException()
         {

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirLinesManager
 {
     [Serializable]
-    public class CountryNotFoundException : ApplicationException
+    public class CountryNotFoundException : AirlinesManagerException
     {
         public CountryNotFoundException()
         {

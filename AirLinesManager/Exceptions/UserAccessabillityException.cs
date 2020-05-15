@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirLinesManager
 {
     [Serializable]
-    public class UserAccessabillityException : ApplicationException
+    public class UserAccessabillityException : AirlinesManagerException
     {
         public UserAccessabillityException()
         {

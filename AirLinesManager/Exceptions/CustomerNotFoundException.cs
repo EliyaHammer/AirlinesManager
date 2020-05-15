@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirLinesManager
 {
     [Serializable]
-    public class CustomerNotFoundException : ApplicationException
+    public class CustomerNotFoundException : AirlinesManagerException
     {
         public CustomerNotFoundException()
         {

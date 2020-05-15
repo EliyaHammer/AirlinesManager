@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirLinesManager
 {
     [Serializable]
-    public class TicketNotFoundException : ApplicationException
+    public class TicketNotFoundException : AirlinesManagerException
     {
         public TicketNotFoundException()
         {

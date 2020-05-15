@@ -1,19 +1,20 @@
-﻿using AirLinesManager;
-using AirLinesManager.Facades;
-using AirLinesManager.Facades.MSSQL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Threading.Tasks;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
+using AirLinesManager;
+using AirLinesManager.Facades;
+using AirLinesManager.Facades.MSSQL;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
-namespace AirlineManagerWebApi.Controllers
+namespace AirlinesManagerWebApi.Controllers
 {
-    //AUTHORIZATION FOR ADMINISTRATOR ROLE . NO NEED FOR TOKEN DETAILS .
     [Route("api/[controller]")]
-    public class AdministratorFacadeController : ApiController
+    [ApiController]
+    public class AdministratorFacadeController : ControllerBase
     {
         private ILoggedInAdministratorFacade facade = new LoggedInAdministratorFacadeMSSQL();
 
@@ -22,7 +23,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(AirlineCompany))]
         [Route("api/administratorfacade/companies/byid/{id}", Name = "GetCompanyByID")]
         [HttpGet]
-        public IHttpActionResult GetCompanyByID(long id)
+        public ActionResult GetCompanyByID(long id)
         {
             try
             {
@@ -40,7 +41,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -50,7 +51,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(Customer))]
         [Route("api/administratorfacade/customers/byid/{id}", Name = "GetCustomerByID")]
         [HttpGet]
-        public IHttpActionResult GetCustomerByID(long id)
+        public ActionResult GetCustomerByID(long id)
         {
             try
             {
@@ -68,7 +69,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -78,7 +79,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(AirlineCompany))]
         [Route("api/administratorfacade/countries/byid/{id}", Name = "GetCountryByID")]
         [HttpGet]
-        public IHttpActionResult GetCountryByID(long id)
+        public ActionResult GetCountryByID(long id)
         {
             try
             {
@@ -96,7 +97,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -105,7 +106,7 @@ namespace AirlineManagerWebApi.Controllers
         //create new airline
         [Route("api/administatorfacade/companies/create")]
         [HttpPost]
-        public IHttpActionResult CreateAirline([FromBody] AirlineCompany airline)
+        public ActionResult CreateAirline([FromBody] AirlineCompany airline)
         {
             try
             {
@@ -119,7 +120,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -128,7 +129,7 @@ namespace AirlineManagerWebApi.Controllers
         //create new country
         [Route("api/administatorfacade/countries/create")]
         [HttpPost]
-        public IHttpActionResult CreateCountry([FromBody] Country country)
+        public ActionResult CreateCountry([FromBody] Country country)
         {
             try
             {
@@ -142,7 +143,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -151,7 +152,7 @@ namespace AirlineManagerWebApi.Controllers
         //create new customer
         [Route("api/administatorfacade/customers/create")]
         [HttpPost]
-        public IHttpActionResult CreateCustomer([FromBody] Customer customer)
+        public ActionResult CreateCustomer([FromBody] Customer customer)
         {
             try
             {
@@ -165,7 +166,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -174,7 +175,7 @@ namespace AirlineManagerWebApi.Controllers
         //remove airline company
         [Route("api/administatorfacade/companies/remove")]
         [HttpPost]
-        public IHttpActionResult RemoveAirline([FromBody] AirlineCompany company)
+        public ActionResult RemoveAirline([FromBody] AirlineCompany company)
         {
             try
             {
@@ -188,7 +189,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
 
         }//CHECKED
@@ -198,7 +199,7 @@ namespace AirlineManagerWebApi.Controllers
         //remove country
         [Route("api/administatorfacade/countries/remove")]
         [HttpPost]
-        public IHttpActionResult RemoveCountry([FromBody] Country country)
+        public ActionResult RemoveCountry([FromBody] Country country)
         {
             try
             {
@@ -212,7 +213,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
 
         }//CHECKED
@@ -222,7 +223,7 @@ namespace AirlineManagerWebApi.Controllers
         //remove customer
         [Route("api/administatorfacade/customers/remove")]
         [HttpPost]
-        public IHttpActionResult RemoveCustomer([FromBody] Customer customer)
+        public ActionResult RemoveCustomer([FromBody] Customer customer)
         {
             try
             {
@@ -236,7 +237,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
 
         }//CHECKED
@@ -246,7 +247,7 @@ namespace AirlineManagerWebApi.Controllers
         //update airline company
         [Route("api/administratorfacade/companies/update")]
         [HttpPut]
-        public IHttpActionResult UpdateCompany ([FromBody] AirlineCompany company)
+        public ActionResult UpdateCompany([FromBody] AirlineCompany company)
         {
             try
             {
@@ -260,7 +261,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -269,7 +270,7 @@ namespace AirlineManagerWebApi.Controllers
         //update country
         [Route("api/administratorfacade/countries/update")]
         [HttpPut]
-        public IHttpActionResult UpdateCountry([FromBody] Country country)
+        public ActionResult UpdateCountry([FromBody] Country country)
         {
             try
             {
@@ -283,7 +284,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
 
@@ -292,7 +293,7 @@ namespace AirlineManagerWebApi.Controllers
         //update customer
         [Route("api/administratorfacade/customers/update")]
         [HttpPut]
-        public IHttpActionResult UpdateCustomer([FromBody] Customer customer)
+        public ActionResult UpdateCustomer([FromBody] Customer customer)
         {
             try
             {
@@ -306,7 +307,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected Error, please contact support.");
             }
         }//CHECKED
     }

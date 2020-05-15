@@ -46,6 +46,7 @@
     <Compile Include="DAO\IDAOTest.cs" />
     <Compile Include="DAO\IAdministratorDAO.cs" />
     <Compile Include="DAO\MSSQL\AdministratorDAOMSSQL.cs" />
+    <Compile Include="Exceptions\AirlinesManagerException.cs" />
     <Compile Include="Facades\IFlightCenterSystemFunctionallityFacade.cs" />
     <Compile Include="Facades\ILoggedInAdministratorFacade.cs" />
     <Compile Include="Facades\MSSQL\FlightCenterSystemFanctionallityFacadeMSSQL.cs" />

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AirLinesManager
 {
     [Serializable]
-    public class WrongPasswordException : Exception
+    public class WrongPasswordException : AirlinesManagerException
     {
         public WrongPasswordException()
         {

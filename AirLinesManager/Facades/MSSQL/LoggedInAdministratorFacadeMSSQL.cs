@@ -50,6 +50,31 @@ namespace AirLinesManager.Facades.MSSQL
             return _customerDAO.Add(toAdd);
         }
 
+        public AirlineCompany GetCompanyByID(long id)
+        {
+            if (id <= 0)
+                throw new IllegalValueException($"ID provided: '{id}' is less or equal to zero.");
+
+            return _airlineDAO.Get(id);
+
+        }
+
+        public Country GetCountryByID(long id)
+        {
+            if (id <= 0)
+                throw new IllegalValueException($"ID provided: '{id}' is less or equal to zero.");
+
+            return _countryDAO.Get(id);
+        }
+
+        public Customer GetCustomerByID(long id)
+        {
+            if (id <= 0)
+                throw new IllegalValueException($"ID provided: '{id}' is less or equal to zero.");
+
+            return _customerDAO.Get(id);
+        }
+
         public void RemoveAirline(AirlineCompany toRemove)
         {
             if (toRemove is null)

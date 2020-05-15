@@ -12,6 +12,9 @@ namespace AirLinesManager.Facades
         AirlineCompany CreateNewAirline(AirlineCompany toAdd);
         Customer CreateNewCustomer(Customer toAdd);
         Country CreateNewCountry(Country toAdd);
+        AirlineCompany GetCompanyByID(long id);
+        Customer GetCustomerByID(long id);
+        Country GetCountryByID(long id);
         void RemoveAirline(AirlineCompany toRemove);
         void RemoveCustomer(Customer toRemove);
         void RemoveCountry(Country toRemove);

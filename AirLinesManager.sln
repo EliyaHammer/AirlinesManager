@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirLinesManager", "AirLines
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlinesManagerTest", "AirlinesManagerTest\AirlinesManagerTest.csproj", "{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineManagerWebApi", "AirlineManagerWebApi\AirlineManagerWebApi.csproj", "{53A85972-D3C2-488B-8811-D63859F5567B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlinesManagerWebApi", "AirlinesManagerWebApi\AirlinesManagerWebApi.csproj", "{07D49666-C545-42EA-A27F-2490C13C2016}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CF942FB-FB5C-43B7-9665-B61D90E3D32C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53A85972-D3C2-488B-8811-D63859F5567B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53A85972-D3C2-488B-8811-D63859F5567B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53A85972-D3C2-488B-8811-D63859F5567B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53A85972-D3C2-488B-8811-D63859F5567B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D49666-C545-42EA-A27F-2490C13C2016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D49666-C545-42EA-A27F-2490C13C2016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D49666-C545-42EA-A27F-2490C13C2016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D49666-C545-42EA-A27F-2490C13C2016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

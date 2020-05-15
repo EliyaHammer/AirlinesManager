@@ -1,18 +1,18 @@
-﻿using AirlineManagerWebApi.Models;
-using AirLinesManager;
-using Microsoft.Ajax.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Threading.Tasks;
 using System.Web.Http.Description;
+using AirLinesManager;
+using AirlinesManagerWebApi.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
-namespace AirlineManagerWebApi.Controllers
+namespace AirlinesManagerWebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class AnnonymousFacadeController : ApiController
+    [ApiController]
+    public class AnnonymousFacadeController : ControllerBase
     {
         private IAnnonymousUserFacade facade = new AnnonymousUserFacadeMSSQL();
 
@@ -21,7 +21,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(List<AirlineCompany>))]
         [Route("api/annonymousfacade/getcompanies", Name = "GetAllCompanies")]
         [HttpGet]
-        public IHttpActionResult GetCompanies ()
+        public ActionResult GetCompanies()
         {
             try
             {
@@ -39,7 +39,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
         } //CHECKED
 
@@ -48,7 +48,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(List<Flight>))]
         [Route("api/annonymousfacade/getflights", Name = "GetAllFlights")]
         [HttpGet]
-        public IHttpActionResult GetFlights ()
+        public ActionResult GetFlights()
         {
             try
             {
@@ -66,16 +66,16 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
         } //CHECKED
 
         //GET api/annonymousfacade/flights/id
         //get all flights
         [ResponseType(typeof(Flight))]
-        [Route("api/annonymousfacade/flights/byid/{id}", Name = "GetFlightByID")] 
+        [Route("api/annonymousfacade/flights/byid/{id}", Name = "GetFlightByID")]
         [HttpGet]
-        public IHttpActionResult GetFlightByID([FromUri] long id)
+        public ActionResult GetFlightByID(long id)
         {
             try
             {
@@ -93,16 +93,16 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
         }//CHECKED
 
         //GET api/annonymousfacade/flightsvacancy
         //get all flights vacancy
         [ResponseType(typeof(Dictionary<Flight, int>))]
-        [Route("api/annonymousfacade/flightsvacancy", Name = "GetAllFlightsVacancy")] 
+        [Route("api/annonymousfacade/flightsvacancy", Name = "GetAllFlightsVacancy")]
         [HttpGet]
-        public IHttpActionResult GetFlightsVacancy()
+        public ActionResult GetFlightsVacancy()
         {
             try
             {
@@ -120,16 +120,16 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
         }//CHECKED
 
         //GET api/annonymousfacade/flights/byairline/id
         //get flights by airline id
         [ResponseType(typeof(List<Flight>))]
-        [Route("api/annonymousfacade/flights/byairline/{id}", Name = "GetFlightsByAirlineID")] 
+        [Route("api/annonymousfacade/flights/byairline/{id}", Name = "GetFlightsByAirlineID")]
         [HttpGet]
-        public IHttpActionResult GetFlightsByAirlineID([FromUri] long id)
+        public ActionResult GetFlightsByAirlineID(long id)
         {
             try
             {
@@ -147,16 +147,16 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
         }//CHECKED
 
         //GET api/annonymousfacade/flights/bydestcountry/id
         //get flights by destination country id
         [ResponseType(typeof(List<Flight>))]
-        [Route("api/annonymousfacade/flights/bydestcountry/{id}", Name = "GetFlightsByDestinationCountryID")] 
+        [Route("api/annonymousfacade/flights/bydestcountry/{id}", Name = "GetFlightsByDestinationCountryID")]
         [HttpGet]
-        public IHttpActionResult GetFlightsByDestinationCountryID([FromUri] long id)
+        public ActionResult GetFlightsByDestinationCountryID(long id)
         {
             try
             {
@@ -177,7 +177,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
         }//CHECKED
 
@@ -186,13 +186,13 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(List<Flight>))]
         [Route("api/annonymousfacade/flights/byorigcountry/{id}", Name = "GetFlightsByOriginCountryID")]
         [HttpGet]
-        public IHttpActionResult GetFlightsByOriginCountryID([FromUri] long id)
+        public ActionResult GetFlightsByOriginCountryID(long id)
         {
             try
             {
                 List<Flight> flights = (List<Flight>)facade.GetFlightsByOriginCountry(id);
                 if (flights.Count == 0)
-                    return StatusCode(HttpStatusCode.NoContent);
+                    return NoContent();
                 else
                     return Ok(flights);
             }
@@ -204,7 +204,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
         }//CHECKED
 
@@ -213,7 +213,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(List<Flight>))]
         [Route("api/annonymousfacade/flights/bydepartdateandtime", Name = "GetFlightsByDepartDateAndTime")]
         [HttpPost]
-        public IHttpActionResult GetFlightsByDepartureDateAndTime ([FromBody] MDate dateAndTime)
+        public ActionResult GetFlightsByDepartureDateAndTime([FromBody] MDate dateAndTime)
         {
             try
             {
@@ -223,7 +223,7 @@ namespace AirlineManagerWebApi.Controllers
                 List<Flight> result = (List<Flight>)facade.GetFlightsByDepartureDateAndTime(dateTime);
 
                 if (result == null)
-                    return StatusCode(HttpStatusCode.NoContent);
+                    return NoContent();
                 else
                     return Ok(result);
             }
@@ -235,7 +235,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
 
         }//CHECKED
@@ -245,7 +245,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(List<Flight>))]
         [Route("api/annonymousfacade/flights/bydepartdate", Name = "GetFlightsByDepartDate")]
         [HttpPost]
-        public IHttpActionResult GetFlightsByDepartureDate([FromBody] MDate dateAndTime)
+        public ActionResult GetFlightsByDepartureDate([FromBody] MDate dateAndTime)
         {
             try
             {
@@ -254,7 +254,7 @@ namespace AirlineManagerWebApi.Controllers
                 List<Flight> result = (List<Flight>)facade.GetFlightsByDepartureDate(dateTime);
 
                 if (result == null)
-                    return StatusCode(HttpStatusCode.NoContent);
+                    return NoContent();
                 else
                     return Ok(result);
             }
@@ -266,7 +266,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
 
         }//CHECKED
@@ -276,7 +276,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(List<Flight>))]
         [Route("api/annonymousfacade/flights/bylanddateandtime", Name = "GetFlightsByLandDateAndTime")]
         [HttpPost]
-        public IHttpActionResult GetFlightsByLandingDateAndTime([FromBody] MDate dateAndTime)
+        public ActionResult GetFlightsByLandingDateAndTime([FromBody] MDate dateAndTime)
         {
             try
             {
@@ -286,7 +286,7 @@ namespace AirlineManagerWebApi.Controllers
                 List<Flight> result = (List<Flight>)facade.GetFlightsByLandingDateAndTime(dateTime);
 
                 if (result == null)
-                    return StatusCode(HttpStatusCode.NoContent);
+                    return NoContent();
                 else
                     return Ok(result);
             }
@@ -298,7 +298,7 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
 
         }//CHECKED
@@ -308,7 +308,7 @@ namespace AirlineManagerWebApi.Controllers
         [ResponseType(typeof(List<Flight>))]
         [Route("api/annonymousfacade/flights/bylanddate", Name = "GetFlightsByLandDate")]
         [HttpPost]
-        public IHttpActionResult GetFlightsByLadningDate([FromBody] MDate dateAndTime)
+        public ActionResult GetFlightsByLadningDate([FromBody] MDate dateAndTime)
         {
             try
             {
@@ -317,7 +317,7 @@ namespace AirlineManagerWebApi.Controllers
                 List<Flight> result = (List<Flight>)facade.GetFlightsByLandingDate(dateTime);
 
                 if (result == null)
-                    return StatusCode(HttpStatusCode.NoContent);
+                    return NoContent();
                 else
                     return Ok(result);
             }
@@ -329,9 +329,9 @@ namespace AirlineManagerWebApi.Controllers
 
             catch (SystemException ex)
             {
-                return InternalServerError(new Exception("Unexpected error. Please contact support."));
+                return Problem("Unexpected error. Please contact support.");
             }
 
         }//CHECKED
     }
-} 
+}
